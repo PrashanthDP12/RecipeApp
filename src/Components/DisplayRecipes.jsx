@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import './displayRecipes.css';
-
-const API_BASE_URL = 'http://localhost:8080/recipes/v2';
+import { apiClient } from './api/apiClient'
 
 function DisplayRecipes() {
   const [recipes, setRecipes] = useState([]);
@@ -14,7 +12,7 @@ function DisplayRecipes() {
 
   const fetchRecipes = async () => {
     try {
-      const response = await axios.get(API_BASE_URL);
+      const response = await apiClient.get();
       setRecipes(response.data);
     } catch (error) {
       console.error('Error fetching recipes:', error);
@@ -43,6 +41,3 @@ function DisplayRecipes() {
 }
 
 export default DisplayRecipes;
-
-
-

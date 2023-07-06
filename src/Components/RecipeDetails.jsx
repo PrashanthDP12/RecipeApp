@@ -1,25 +1,59 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { useParams } from "react-router-dom";
 import "./RecipeDetails.css";
-
-const API_BASE_URL = "http://localhost:8080/recipes/v2";
+import { apiClient } from './api/apiClient'
 
 function RecipeDetails() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [newReview, setNewReview] = useState("");
   const [newRating, setNewRating] = useState("");
-  const [newUserId, setNewUserId] = useState('');
+  const [newUserId, setNewUserId] = useState("");
   const [ratingError, setRatingError] = useState(false);
+
+  const [updatedReview, setUpdatedReview] = useState({
+    comment: "",
+    rating: "",
+    reviewId: null,
+  });
+
+  const [selectedReview, setSelectedReview] = useState(null);
+
+  const handleUpdateReview = (review) => {
+    setSelectedReview(review);
+    setUpdatedReview({
+      comment: review.comment,
+      rating: review.rating,
+      reviewId: review.id,
+    });
+  };
+
+  const handleCancelUpdate = () => {
+    setSelectedReview(null);
+    setUpdatedReview({ comment: "", rating: "" });
+  };
+
+  const handleInputChange = (event) => {
+    const { name, value } = event.target;
+    setUpdatedReview((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+  };
 
   useEffect(() => {
     fetchRecipe();
   }, []);
 
+  useEffect(() => {
+    if (updatedReview) {
+      fetchRecipe();
+    }
+  }, [updatedReview]);
+
   const fetchRecipe = async () => {
     try {
-      const response = await axios.get(`${API_BASE_URL}/${id}`);
+      const response = await apiClient.get(`/${id}`);
       setRecipe(response.data);
     } catch (error) {
       console.error("Error fetching recipe:", error);
@@ -31,30 +65,33 @@ function RecipeDetails() {
       const review = {
         comment: newReview,
         rating: newRating,
-        userId: newUserId
+        userId: newUserId,
       };
 
       if (isNaN(newRating) || newRating < 1 || newRating > 5) {
         setRatingError(true);
         return;
       }
-  
-      const response = await axios.post(`${API_BASE_URL}/${id}/reviews`, review);
+
+      const response = await apiClient.post(
+        `/${id}/reviews`,
+        review
+      );
       const addedReview = response.data;
-  
+
       // Update the recipe with the new review
-      setRecipe(prevRecipe => ({
+      setRecipe((prevRecipe) => ({
         ...prevRecipe,
-        reviews: [...prevRecipe.reviews, addedReview]
+        reviews: [...prevRecipe.reviews, addedReview],
       }));
-  
+
       // Clear the review input fields
-      setNewReview('');
-      setNewRating('');
+      setNewReview("");
+      setNewRating("");
       setNewUserId("");
       setRatingError(false);
     } catch (error) {
-      console.error('Error adding review:', error);
+      console.error("Error adding review:", error);
     }
   };
 
@@ -64,14 +101,14 @@ function RecipeDetails() {
     setNewUserId("");
     setRatingError(false);
   };
-  
 
-  // Update an existing review
-  const updateReview = async (reviewId, updatedReview) => {
+  const updateReview = async (reviewId) => {
     try {
-      const response = await axios.put(
-        `${API_BASE_URL}/${id}/reviews/${reviewId}`,
-        updatedReview
+      const updatedReviewWithUserId = { ...updatedReview, reviewId };
+
+      const response = await apiClient.put(
+        `/${id}/reviews/${reviewId}`,
+        updatedReviewWithUserId
       );
       const updated = response.data;
 
@@ -82,6 +119,15 @@ function RecipeDetails() {
           review.id === updated.id ? updated : review
         ),
       }));
+
+      // Clear the updatedReview state and input fields
+      setUpdatedReview({
+        comment: "",
+        rating: "",
+        reviewId: null,
+      });
+      // Reset the selectedReview state
+      setSelectedReview(null);
     } catch (error) {
       console.error("Error updating review:", error);
     }
@@ -163,7 +209,9 @@ function RecipeDetails() {
               onChange={(event) => setNewRating(event.target.value)}
               placeholder="Enter rating (1-5)"
             />
-            {ratingError && <p className="error-message">Invalid rating entered.</p>}
+            {ratingError && (
+              <p className="error-message">Invalid rating entered.</p>
+            )}
           </div>
         </div>
         <div className="button-container">
@@ -179,6 +227,7 @@ function RecipeDetails() {
               <th>User</th>
               <th>Comment</th>
               <th>Rating</th>
+              <th>Action</th>
             </tr>
           </thead>
           <tbody>
@@ -187,6 +236,34 @@ function RecipeDetails() {
                 <td>{review.userId}</td>
                 <td>{review.comment}</td>
                 <td>{review.rating}</td>
+                <td>
+                  {selectedReview && selectedReview.userId === review.userId ? (
+                    <>
+                      <input
+                        type="text"
+                        name="comment"
+                        value={updatedReview.comment}
+                        onChange={handleInputChange}
+                      />
+                      <input
+                        type="text"
+                        name="rating"
+                        value={updatedReview.rating}
+                        onChange={handleInputChange}
+                      />
+                      <button onClick={() => updateReview(review.userId)}>
+                        Save
+                      </button>
+                      <button onClick={handleCancelUpdate}>Cancel</button>
+                    </>
+                  ) : (
+                    <>
+                      <button onClick={() => handleUpdateReview(review)}>
+                        Update
+                      </button>
+                    </>
+                  )}
+                </td>
               </tr>
             ))}
           </tbody>
