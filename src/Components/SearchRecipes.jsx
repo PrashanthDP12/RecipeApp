@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { apiClient } from './api/apiClient';
 import SearchResults from './SearchResults';
+import './SearchRecipes.css';
 
 function SearchRecipes() {
   const [keyword, setKeyword] = useState('');
@@ -18,9 +19,9 @@ function SearchRecipes() {
   };
 
   return (
-    <div>
-      <h2>Search Recipes</h2>
-      <form onSubmit={handleSearch} className="mb-4">
+    <div className="search-recipes-container">
+      <h2 className="search-recipes-title">Search Recipes</h2>
+      <form onSubmit={handleSearch} className="search-form">
         <div className="input-group">
           <input
             type="text"
@@ -38,7 +39,7 @@ function SearchRecipes() {
       {searchResults.length > 0 ? (
         <SearchResults results={searchResults} />
       ) : (
-        <p>No search results found.</p>
+        <p className="no-results">No search results found.</p>
       )}
     </div>
   );
