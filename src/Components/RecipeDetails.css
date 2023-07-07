@@ -189,4 +189,14 @@
   .input-field textarea {
     width: 300px;
   }
+
+  .favorite-icon {
+    color: #ccc; /* default color */
+    cursor: pointer;
+  }
+  
+  .favorite-icon.active {
+    color: gold; /* or any other color to indicate favorite */
+  }
+  
  

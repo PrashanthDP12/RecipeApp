@@ -5,10 +5,13 @@ import { apiClient } from "./api/apiClient";
 import ReviewForm from "./ReviewForm";
 import ReviewTable from "./ReviewTable";
 import RecipeInfo from "./RecipeInfo";
+import { FaStar } from "react-icons/fa";
+import "./RecipeDetails.css";
 
 function RecipeDetails() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
+  const [isFavorite, setIsFavorite] = useState(null);
 
   useEffect(() => {
     fetchRecipe();
@@ -17,6 +20,7 @@ function RecipeDetails() {
   useEffect(() => {
     if (recipe) {
       fetchRecipe();
+      setIsFavorite(recipe.favorite);
     }
   }, [recipe]);
 
@@ -24,6 +28,7 @@ function RecipeDetails() {
     try {
       const response = await apiClient.get(`/${id}`);
       setRecipe(response.data);
+      console.log(recipe.favorite);
     } catch (error) {
       console.error("Error fetching recipe:", error);
     }
@@ -46,13 +51,18 @@ function RecipeDetails() {
 
   const updateReview = async (reviewId, updatedReview) => {
     try {
-      const response = await apiClient.put(`/${id}/reviews/${reviewId}`, updatedReview);
+      const response = await apiClient.put(
+        `/${id}/reviews/${reviewId}`,
+        updatedReview
+      );
       const updated = response.data;
 
       // Update the recipe with the updated review
       setRecipe((prevRecipe) => ({
         ...prevRecipe,
-        reviews: prevRecipe.reviews.map((review) => (review.id === updated.id ? updated : review)),
+        reviews: prevRecipe.reviews.map((review) =>
+          review.id === updated.id ? updated : review
+        ),
       }));
     } catch (error) {
       console.error("Error updating review:", error);
@@ -62,17 +72,31 @@ function RecipeDetails() {
   const deleteReview = async (reviewId) => {
     try {
       await apiClient.delete(`/${id}/reviews/${reviewId}`);
-  
+
       // Remove the deleted review from the recipe's reviews
       setRecipe((prevRecipe) => ({
         ...prevRecipe,
-        reviews: prevRecipe.reviews.filter((review) => review.userId !== reviewId),
+        reviews: prevRecipe.reviews.filter(
+          (review) => review.userId !== reviewId
+        ),
       }));
     } catch (error) {
       console.error("Error deleting review:", error);
     }
   };
-  
+
+  const toggleFavorite = async () => {
+    try {
+      if (isFavorite) {
+        await apiClient.delete(`/${id}/favorite`);
+      } else {
+        await apiClient.post(`/${id}/favorite`);
+      }
+      setIsFavorite(!isFavorite);
+    } catch (error) {
+      console.error("Error toggling favorite:", error);
+    }
+  };
 
   if (!recipe) {
     return <div>Loading...</div>;
@@ -80,14 +104,26 @@ function RecipeDetails() {
 
   return (
     <div className="recipe-details-container">
-      <h2 className="recipe-title">{recipe.title}</h2>
+      <h2 className="recipe-title">
+        {recipe.title}
+        {recipe.favorite !== null && (
+          <FaStar
+            className={isFavorite ? "favorite-icon active" : "favorite-icon"}
+            onClick={toggleFavorite}
+          />
+        )}
+      </h2>
       <RecipeInfo recipe={recipe} />
 
       <h4 className="recipe-reviews">Reviews:</h4>
 
       <ReviewForm onAddReview={addReview} />
 
-      <ReviewTable reviews={recipe.reviews} onUpdateReview={updateReview} onDeleteReview={deleteReview} />
+      <ReviewTable
+        reviews={recipe.reviews}
+        onUpdateReview={updateReview}
+        onDeleteReview={deleteReview}
+      />
     </div>
   );
 }
