@@ -59,6 +59,21 @@ function RecipeDetails() {
     }
   };
 
+  const deleteReview = async (reviewId) => {
+    try {
+      await apiClient.delete(`/${id}/reviews/${reviewId}`);
+  
+      // Remove the deleted review from the recipe's reviews
+      setRecipe((prevRecipe) => ({
+        ...prevRecipe,
+        reviews: prevRecipe.reviews.filter((review) => review.userId !== reviewId),
+      }));
+    } catch (error) {
+      console.error("Error deleting review:", error);
+    }
+  };
+  
+
   if (!recipe) {
     return <div>Loading...</div>;
   }
@@ -72,7 +87,7 @@ function RecipeDetails() {
 
       <ReviewForm onAddReview={addReview} />
 
-      <ReviewTable reviews={recipe.reviews} onUpdateReview={updateReview} />
+      <ReviewTable reviews={recipe.reviews} onUpdateReview={updateReview} onDeleteReview={deleteReview} />
     </div>
   );
 }

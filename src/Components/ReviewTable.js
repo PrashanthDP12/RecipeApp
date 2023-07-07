@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-function ReviewTable({ reviews, onUpdateReview }) {
+function ReviewTable({ reviews, onUpdateReview, onDeleteReview }) {
   const [updatedReview, setUpdatedReview] = useState({
     comment: "",
     rating: "",
@@ -32,7 +32,7 @@ function ReviewTable({ reviews, onUpdateReview }) {
   };
 
   const updateReview = (reviewId) => {
-    const updatedReviewWithUserId = {...updatedReview, reviewId };
+    const updatedReviewWithUserId = { ...updatedReview, reviewId };
 
     onUpdateReview(reviewId, updatedReviewWithUserId);
 
@@ -45,6 +45,10 @@ function ReviewTable({ reviews, onUpdateReview }) {
 
     // Reset the selectedReview state
     setSelectedReview(null);
+  };
+
+  const deleteReview = (reviewId) => {
+    onDeleteReview(reviewId);
   };
 
   return (
@@ -86,9 +90,14 @@ function ReviewTable({ reviews, onUpdateReview }) {
                   </>
                 ) : (
                   <>
-                    <button onClick={() => handleUpdateReview(review)}>
-                      Update
-                    </button>
+                    <div className="button-container">
+                      <button onClick={() => handleUpdateReview(review)}>
+                        Update
+                      </button>
+                      <button onClick={() => deleteReview(review.userId)}>
+                        Delete
+                      </button>
+                    </div>
                   </>
                 )}
               </td>
