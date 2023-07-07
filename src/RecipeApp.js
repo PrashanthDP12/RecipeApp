@@ -5,6 +5,8 @@ import SearchRecipes from './Components/SearchRecipes';
 import Home from './Components/Home';
 import RecipeDetails from './Components/RecipeDetails';
 import FavoriteRecipes from './Components/FavoriteRecipes';
+import AddRecipe from './Components/AddRecipe';
+
 
 function RecipeApp() {
   return (
@@ -15,6 +17,7 @@ function RecipeApp() {
         <Route path="/search-recipes" element={<SearchRecipes />} />
         <Route path="/display-recipes/:id" element={<RecipeDetails />} />
         <Route path="/favorite-recipes" element={<FavoriteRecipes />} />
+        <Route path="/add-recipe" element={<AddRecipe />} />
       </Routes>
     </div>
   );

@@ -29,6 +29,13 @@ function Home() {
         >
           Favorite Recipes
         </Link>
+        <Link
+          to="/add-recipe"
+          className="btn btn-primary btn-lg mx-2"
+          style={{ backgroundColor: '#007bff', borderColor: '#007bff' }}
+        >
+          Add Recipe
+        </Link>
       </div>
     </div>
   );
