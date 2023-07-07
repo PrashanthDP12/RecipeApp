@@ -28,7 +28,6 @@ function RecipeDetails() {
     try {
       const response = await apiClient.get(`/${id}`);
       setRecipe(response.data);
-      console.log(recipe.favorite);
     } catch (error) {
       console.error("Error fetching recipe:", error);
     }

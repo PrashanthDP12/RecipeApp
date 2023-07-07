@@ -59,7 +59,7 @@ function ReviewTable({ reviews, onUpdateReview, onDeleteReview }) {
             <th>User</th>
             <th>Comment</th>
             <th>Rating</th>
-            <th>Action</th>
+            <th style={{ textAlign: 'center' }}>Action</th>
           </tr>
         </thead>
         <tbody>
