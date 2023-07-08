@@ -34,4 +34,70 @@
     background-color: #0056b3;
     border-color: #0056b3;
   }
+
+  .home-container {
+    text-align: center;
+    padding: 40px;
+  }
+  
+  .home-title {
+    font-size: 36px;
+    margin-bottom: 20px;
+  }
+  
+  .home-description {
+    font-size: 18px;
+    margin-bottom: 40px;
+  }
+  
+  .home-buttons {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .home-button {
+    display: inline-block;
+    padding: 12px 24px;
+    margin: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-decoration: none;
+    background-color: #5236f4;
+    color: #fff;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .home-button:hover {
+    background-color: #e53935;
+  }
+  
+  .home-button:active {
+    background-color: #c62828;
+  }
+  
+  /* Example: Using Font Awesome icons */
+  .home-button::before {
+    margin-right: 8px;
+    font-family: 'Font Awesome 5 Free';
+    font-weight: 900;
+  }
+  
+  .home-button.display-recipes::before {
+    content: '\f0e8'; /* Icon code for "list" */
+  }
+  
+  .home-button.search-recipes::before {
+    content: '\f002'; /* Icon code for "search" */
+  }
+  
+  .home-button.favorite-recipes::before {
+    content: '\f004'; /* Icon code for "heart" */
+  }
+  
+  .home-button.add-recipe::before {
+    content: '\f067'; /* Icon code for "plus" */
+  }
+  
   
