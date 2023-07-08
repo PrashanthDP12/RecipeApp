@@ -1,16 +1,18 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import { apiClient } from "./api/apiClient";
 import ReviewForm from "./ReviewForm";
 import ReviewTable from "./ReviewTable";
 import RecipeInfo from "./RecipeInfo";
 import { FaStar } from "react-icons/fa";
 import "../styles/RecipeDetails.css";
+import RecipeUpdate from "./RecipeUpdate";
 
 function RecipeDetails() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [isFavorite, setIsFavorite] = useState(null);
+  const navigate = useNavigate();
 
   useEffect(() => {
     fetchRecipe();
@@ -96,6 +98,10 @@ function RecipeDetails() {
     }
   };
 
+  const handleUpdateClick = () => {
+    navigate(`/update-recipe/${id}`);
+  };
+
   if (!recipe) {
     return <div>Loading...</div>;
   }
@@ -110,13 +116,14 @@ function RecipeDetails() {
             onClick={toggleFavorite}
           />
         )}
-      </h2>
+      </h2>     
       <RecipeInfo recipe={recipe} />
-
-      <h4 className="recipe-reviews">Reviews:</h4>
-
+      <div className="button-container">
+        <button type="button" onClick={handleUpdateClick}>
+          Update Recipe
+        </button>
+      </div>
       <ReviewForm onAddReview={addReview} />
-
       <ReviewTable
         reviews={recipe.reviews}
         onUpdateReview={updateReview}

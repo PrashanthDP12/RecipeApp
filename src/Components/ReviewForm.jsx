@@ -36,7 +36,6 @@ function ReviewForm({ onAddReview }) {
 
   return (
     <div className="add-review-container">
-      <h4>Add Review:</h4>
       <div className="input-fields">
         <div className="input-field">
           <label>User ID:</label>

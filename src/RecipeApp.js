@@ -7,6 +7,7 @@ import RecipeDetails from './Components/RecipeDetails';
 import FavoriteRecipes from './Components/FavoriteRecipes';
 import AddRecipe from './Components/AddRecipe';
 import HeaderComponent from './Components/HeaderComponent';
+import RecipeUpdate from './Components/RecipeUpdate';
 
 function RecipeApp() {
   return (
@@ -19,6 +20,7 @@ function RecipeApp() {
         <Route path="/display-recipes/:id" element={<RecipeDetails />} />
         <Route path="/favorite-recipes" element={<FavoriteRecipes />} />
         <Route path="/add-recipe" element={<AddRecipe />} />
+        <Route path="/update-recipe/:id" element={<RecipeUpdate />} />
       </Routes>
     </div>
   );
