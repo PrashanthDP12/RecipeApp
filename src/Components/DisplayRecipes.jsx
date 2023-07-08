@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import './displayRecipes.css';
+import '../styles/displayRecipes.css';
 import { apiClient } from './api/apiClient';
 import { FaStar } from 'react-icons/fa';
 

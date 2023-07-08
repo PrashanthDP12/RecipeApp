@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import "./RecipeDetails.css";
 import { apiClient } from "./api/apiClient";
 import ReviewForm from "./ReviewForm";
 import ReviewTable from "./ReviewTable";
 import RecipeInfo from "./RecipeInfo";
 import { FaStar } from "react-icons/fa";
-import "./RecipeDetails.css";
+import "../styles/RecipeDetails.css";
 
 function RecipeDetails() {
   const { id } = useParams();

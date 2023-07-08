@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { apiClient } from './api/apiClient';
-import './FavoriteRecipes.css'; // Import the CSS file
+import '../styles/FavoriteRecipes.css'; // Import the CSS file
 
 function FavoriteRecipes() {
     const [favoriteRecipes, setFavoriteRecipes] = useState([]);

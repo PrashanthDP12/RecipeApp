@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { apiClient } from './api/apiClient';
 import SearchResults from './SearchResults';
-import './SearchRecipes.css';
+import '../styles/SearchRecipes.css';
 
 function SearchRecipes() {
   const [keyword, setKeyword] = useState('');
