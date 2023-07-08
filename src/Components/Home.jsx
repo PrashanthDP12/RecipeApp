@@ -1,38 +1,38 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import './Home.css';
 
 function Home() {
   return (
-    <div className="text-center" style={{ backgroundColor: '#f8f9fa', padding: '2rem', height: '100vh' }}>
-      <h1 style={{ fontSize: '3rem', marginBottom: '2rem', color: '#ff4081' }}>
-        Welcome to Recipe App
+    <div className="text-center home-container" >
+      <h1 className="home-title">
+        Discover Delicious Recipes
       </h1>
-      <div className="mt-5">
+      <p className="home-description">
+        Welcome to the Tasty Temptations Recipe App! Explore a wide range of mouth-watering recipes, find your favorites, and add your own creations to share with the community.
+      </p>
+      <div className="home-buttons">
         <Link
           to="/display-recipes"
-          className="btn btn-primary btn-lg mx-2"
-          style={{ backgroundColor: '#007bff', borderColor: '#007bff' }}
+          className="home-button"
         >
           Display All Recipes
         </Link>
         <Link
           to="/search-recipes"
-          className="btn btn-primary btn-lg mx-2"
-          style={{ backgroundColor: '#007bff', borderColor: '#007bff' }}
+          className="home-button"
         >
           Search Recipes
         </Link>
         <Link
           to="/favorite-recipes"
-          className="btn btn-primary btn-lg mx-2"
-          style={{ backgroundColor: '#007bff', borderColor: '#007bff' }}
+          className="home-button"
         >
           Favorite Recipes
         </Link>
         <Link
           to="/add-recipe"
-          className="btn btn-primary btn-lg mx-2"
-          style={{ backgroundColor: '#007bff', borderColor: '#007bff' }}
+          className="home-button"
         >
           Add Recipe
         </Link>

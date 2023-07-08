@@ -1,16 +1,17 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import DisplayRecipes from './Components/DisplayRecipes';
 import SearchRecipes from './Components/SearchRecipes';
 import Home from './Components/Home';
 import RecipeDetails from './Components/RecipeDetails';
 import FavoriteRecipes from './Components/FavoriteRecipes';
 import AddRecipe from './Components/AddRecipe';
-
+import HeaderComponent from './Components/HeaderComponent';
 
 function RecipeApp() {
   return (
     <div className="container">
+      <HeaderComponent /> {/* Include the HeaderComponent */}
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/display-recipes" element={<DisplayRecipes />} />

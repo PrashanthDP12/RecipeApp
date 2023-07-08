@@ -1,9 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { apiClient } from './api/apiClient';
+import './FavoriteRecipes.css'; // Import the CSS file
 
 function FavoriteRecipes() {
-  const [favoriteRecipes, setFavoriteRecipes] = useState([]);
+    const [favoriteRecipes, setFavoriteRecipes] = useState([]);
 
   useEffect(() => {
     fetchFavoriteRecipes();
@@ -19,15 +20,15 @@ function FavoriteRecipes() {
   };
 
   return (
-    <div style={{ backgroundColor: '#89CFF0' }}>
-      <h2 className="text-center mb-4">Favorite Recipes</h2>
+    <div className="favorite-recipes-container">
+      <h2 className="favorite-recipes-title">Favorite Recipes</h2>
       <div className="card-columns">
         {favoriteRecipes.map((recipe) => (
-          <div className="card" key={recipe.id}>
-            <div className="card-body">
-              <h5 className="card-title font-weight-bold">{recipe.title}</h5>
-              <p className="card-text">{recipe.description}</p>
-              <Link to={`/display-recipes/${recipe.recipeKey}`} className="btn btn-primary">
+          <div className="favorite-recipes-card" key={recipe.id}>
+            <div className="favorite-recipes-card-body">
+              <h5 className="favorite-recipes-card-title">{recipe.title}</h5>
+              <p className="favorite-recipes-card-description">{recipe.description}</p>
+              <Link to={`/display-recipes/${recipe.recipeKey}`} className="favorite-recipes-card-link">
                 View Recipe
               </Link>
             </div>
@@ -39,3 +40,4 @@ function FavoriteRecipes() {
 }
 
 export default FavoriteRecipes;
+
