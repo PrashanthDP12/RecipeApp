@@ -119,7 +119,6 @@
     background-color: #f2f2f2;
   }
 
-  /* Adjust the width as needed */
   .input-field input,
   .input-field textarea {
     width: 300px;
@@ -184,19 +183,18 @@
     color: red;
   }
   
-  /* Adjust the width as needed */
   .input-field input,
   .input-field textarea {
     width: 300px;
   }
 
   .favorite-icon {
-    color: #ccc; /* default color */
+    color: #ccc; 
     cursor: pointer;
   }
   
   .favorite-icon.active {
-    color: gold; /* or any other color to indicate favorite */
+    color: gold; 
   }
   
  

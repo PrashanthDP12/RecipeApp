@@ -77,7 +77,6 @@
     background-color: #c62828;
   }
   
-  /* Example: Using Font Awesome icons */
   .home-button::before {
     margin-right: 8px;
     font-family: 'Font Awesome 5 Free';
@@ -85,19 +84,19 @@
   }
   
   .home-button.display-recipes::before {
-    content: '\f0e8'; /* Icon code for "list" */
+    content: '\f0e8'; 
   }
   
   .home-button.search-recipes::before {
-    content: '\f002'; /* Icon code for "search" */
+    content: '\f002'; 
   }
   
   .home-button.favorite-recipes::before {
-    content: '\f004'; /* Icon code for "heart" */
+    content: '\f004'; 
   }
   
   .home-button.add-recipe::before {
-    content: '\f067'; /* Icon code for "plus" */
+    content: '\f067'; 
   }
   
   

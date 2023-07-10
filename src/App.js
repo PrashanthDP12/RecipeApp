@@ -9,7 +9,7 @@ function App() {
     <Router>
       <div className="App">
         <Helmet>
-          <title>Recipe App</title>
+          <title>Tasty Temptations</title>
         </Helmet>
         <RecipeApp />
       </div>
