@@ -1,38 +1,37 @@
 .search-recipes-container {
-    text-align: center;
-    background-color: #f8f9fa;
-    padding: 2rem;
-  }
-  
-  .search-recipes-title {
-    font-size: 2rem;
-    margin-bottom: 2rem;
-    color: #007bff;
-  }
-  
-  .search-form {
-    margin-bottom: 2rem;
-    display: flex;
-    justify-content: center;
-  }
-  
-  .input-group {
-    display: flex;
-    margin-right: 1rem;
-  }
-  
-  .form-control {
-    padding: 0.5rem;
-  }
-  
-  .btn-primary {
-    padding: 0.5rem 1rem;
-    background-color: #007bff;
-    color: #fff;
-    border: none;
-  }
-  
-  .no-results {
-    margin-top: 1rem;
-  }
-  
+  text-align: center;
+  background-color: #f8f9fa;
+  padding: 2rem;
+}
+
+.search-recipes-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+  color: #007bff;
+}
+
+.search-form {
+  margin-bottom: 2rem;
+  display: flex;
+  justify-content: center;
+}
+
+.input-group {
+  display: flex;
+  margin-right: 1rem;
+}
+
+.form-control {
+  padding: 0.5rem;
+}
+
+.btn-primary {
+  padding: 0.5rem 1rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+}
+
+.no-results {
+  margin-top: 1rem;
+}

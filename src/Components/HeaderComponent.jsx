@@ -5,7 +5,7 @@ import '../styles/HeaderComponent.css';
 function HeaderComponent() {
   return (
     <header className="app-header">
-      <Link to="/" className="app-title">Tasty Temptations</Link> {/* Home link */}
+      <Link to="/" className="app-title">Tasty Temptations</Link> 
     </header>
   );
 }
