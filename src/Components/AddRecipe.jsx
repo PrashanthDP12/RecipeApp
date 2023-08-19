@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { apiClient } from './api/apiClient';
-
+import '../styles/AddRecipe.css';
 function AddRecipe() {
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -36,8 +36,8 @@ function AddRecipe() {
   };
 
   return (
-    <div>
-      <h2>Add New Recipe</h2>
+    <div className="add-recipe-container">
+      <h2 className="add-recipe-title">Add New Recipe</h2>
       {successMessage && <p className="text-success">{successMessage}</p>}
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -103,7 +103,7 @@ function AddRecipe() {
             required
           ></textarea>
         </div>
-        <button type="submit" className="btn btn-primary">
+        <button type="submit" className="btn btn-primary add-recipe-button">
           Add Recipe
         </button>
       </form>

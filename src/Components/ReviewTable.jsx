@@ -9,7 +9,7 @@ function ReviewTable({ reviews, onUpdateReview, onDeleteReview }) {
 
   const [selectedReview, setSelectedReview] = useState(null);
 
-  const handleUpdateReview = (review) => {
+  const handleEditReview = (review) => {
     setSelectedReview(review);
     setUpdatedReview({
       comment: review.comment,
@@ -35,15 +35,12 @@ function ReviewTable({ reviews, onUpdateReview, onDeleteReview }) {
     const updatedReviewWithUserId = { ...updatedReview, reviewId };
 
     onUpdateReview(reviewId, updatedReviewWithUserId);
-
-    // Clear the updatedReview state
     setUpdatedReview({
       comment: "",
       rating: "",
       reviewId: null,
     });
 
-    // Reset the selectedReview state
     setSelectedReview(null);
   };
 
@@ -59,7 +56,7 @@ function ReviewTable({ reviews, onUpdateReview, onDeleteReview }) {
             <th>User</th>
             <th>Comment</th>
             <th>Rating</th>
-            <th style={{ textAlign: 'center' }}>Action</th>
+            <th style={{ textAlign: "center" }}>Action</th>
           </tr>
         </thead>
         <tbody>
@@ -83,16 +80,18 @@ function ReviewTable({ reviews, onUpdateReview, onDeleteReview }) {
                       value={updatedReview.rating}
                       onChange={handleInputChange}
                     />
-                    <button onClick={() => updateReview(review.userId)}>
-                      Save
-                    </button>
-                    <button onClick={handleCancelUpdate}>Cancel</button>
+                    <div className="button-container">
+                      <button onClick={() => updateReview(review.userId)}>
+                        Save
+                      </button>
+                      <button onClick={handleCancelUpdate}>Cancel</button>
+                    </div>
                   </>
                 ) : (
                   <>
                     <div className="button-container">
-                      <button onClick={() => handleUpdateReview(review)}>
-                        Update
+                      <button onClick={() => handleEditReview(review)}>
+                        Edit
                       </button>
                       <button onClick={() => deleteReview(review.userId)}>
                         Delete

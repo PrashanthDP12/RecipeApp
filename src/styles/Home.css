@@ -1,33 +1,13 @@
 .home-container {
-  background-color: #f8f9fa;
+  background-color: rgba(165, 177, 188, 0.8);
   padding: 2rem;
-  height: 100vh;
-}
-
-.home-title {
-  font-size: 3rem;
-  margin-bottom: 2rem;
-  color: #ff4081;
-}
-
-.home-description {
-  font-size: 1.5rem;
-  margin-bottom: 2rem;
+  height: auto;
+  border-radius: 10px;
+  text-align: center;
 }
 
 .home-buttons {
   margin-top: 5rem;
-}
-
-.home-button {
-  display: inline-block;
-  margin: 0.5rem;
-  padding: 1rem 2rem;
-  font-size: 1.2rem;
-  background-color: #007bff;
-  border: 1px solid #007bff;
-  color: #fff;
-  text-decoration: none;
 }
 
 .home-button:hover {
@@ -35,25 +15,11 @@
   border-color: #0056b3;
 }
 
-.home-container {
-  text-align: center;
-  padding: 40px;
-}
-
 .home-title {
+  font-family: 'Josefin Sans', sans-serif;
   font-size: 36px;
   margin-bottom: 20px;
-}
-
-.home-description {
-  font-size: 18px;
-  margin-bottom: 40px;
-}
-
-.home-buttons {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
+  color: #2a0316;
 }
 
 .home-button {
@@ -63,14 +29,14 @@
   font-size: 16px;
   font-weight: bold;
   text-decoration: none;
-  background-color: #5236f4;
+  background-color: #4931d1;
   color: #fff;
   border-radius: 4px;
   transition: background-color 0.3s ease;
 }
 
 .home-button:hover {
-  background-color: #e53935;
+  background-color: #c1089f;
 }
 
 .home-button:active {
@@ -97,4 +63,34 @@
 
 .home-button.add-recipe::before {
   content: '\f067'; 
+}
+
+.message-style {
+  font-size: 2.5rem;
+  color: #4931d1;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.6);
+  margin: 1rem 0;
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: italic; 
+  src: url('../assets/fonts/JosefinSans-Italic-VariableFont_wght.ttf') format('truetype');
+}
+
+@font-face {
+  font-family: 'Josefin Sans';
+  font-style: normal; /* Specify the normal style */
+  src: url('../assets/fonts/JosefinSans-VariableFont_wght.ttf') format('truetype');
+}
+
+.message-style {
+  font-family: 'Josefin Sans', sans-serif;
+  font-style: italic; 
+}
+
+.normal-text {
+  font-family: 'Josefin Sans', sans-serif;
+  font-style: normal; 
+  font-size: 25px;
 }

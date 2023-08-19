@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
-import { apiClient } from './api/apiClient';
-import SearchResults from './SearchResults';
-import '../styles/SearchRecipes.css';
+import React, { useState } from "react";
+import { apiClient } from "./api/apiClient";
+import SearchResults from "./SearchResults";
+import "../styles/SearchRecipes.css";
 
 function SearchRecipes() {
-  const [keyword, setKeyword] = useState('');
+  const [keyword, setKeyword] = useState("");
   const [searchResults, setSearchResults] = useState([]);
 
   const handleSearch = async (e) => {
@@ -14,7 +14,7 @@ function SearchRecipes() {
       const response = await apiClient.get(`/search?keyword=${keyword}`);
       setSearchResults(response.data.content);
     } catch (error) {
-      console.error('Error searching recipes:', error);
+      console.error("Error searching recipes:", error);
     }
   };
 
@@ -30,9 +30,11 @@ function SearchRecipes() {
             value={keyword}
             onChange={(e) => setKeyword(e.target.value)}
           />
-          <button type="submit" className="btn btn-primary">
-            Search
-          </button>
+          <div>
+            <button type="submit" className="btn btn-primary">
+              Search
+            </button>
+          </div>
         </div>
       </form>
 

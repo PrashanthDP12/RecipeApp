@@ -1,0 +1,49 @@
+/* AddRecipe.css */
+.add-recipe-container {
+    background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin: 20px auto; /* Center the form */
+    max-width: 600px; /* Limit the width of the form */
+  }
+  
+  .add-recipe-title {
+    font-size: 2rem;
+    margin-bottom: 20px;
+    color: #ff4081;
+  }
+  
+  .text-success {
+    color: #28a745; /* Green color for success message */
+  }
+  
+  .add-recipe-button {
+    margin-top: 20px;
+  }
+  
+  /* Style form inputs */
+  .form-control {
+    margin-bottom: 15px;
+  }
+  
+  /* Style textareas */
+  textarea.form-control {
+    height: 150px; /* Set a fixed height for textareas */
+  }
+  
+  /* Style the submit button */
+  .btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+  }
+  
+  .btn-primary:hover {
+    background-color: #0056b3;
+    border-color: #0056b3;
+  }
+  
+  .btn-primary:active {
+    background-color: #003c80;
+  }
+  

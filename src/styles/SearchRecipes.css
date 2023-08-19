@@ -2,10 +2,14 @@
   text-align: center;
   background-color: #f8f9fa;
   padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 600px;
 }
 
 .search-recipes-title {
-  font-size: 2rem;
+  font-size: 2.5rem;
   margin-bottom: 2rem;
   color: #007bff;
 }
@@ -14,6 +18,7 @@
   margin-bottom: 2rem;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .input-group {
@@ -22,16 +27,68 @@
 }
 
 .form-control {
-  padding: 0.5rem;
+  padding: 0.8rem;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .btn-primary {
-  padding: 0.5rem 1rem;
+  padding: 0.8rem 1.5rem;
   background-color: #007bff;
   color: #fff;
   border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
 }
 
 .no-results {
   margin-top: 1rem;
+  color: #6c757d;
+  font-style: italic;
 }
+
+
+.search-results {
+  list-style-type: none;
+  padding: 0;
+  text-align: left;
+}
+
+.search-result-item {
+  border: 1px solid #ccc;
+  background-color: #fff;
+  padding: 1rem;
+  margin: 1rem 0;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.search-result-title {
+  font-size: 1.2rem;
+  margin-bottom: 0.5rem;
+}
+
+.search-result-description {
+  color: #6c757d;
+}
+
+.btn-primary {
+  padding: 0.8rem 1.5rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 20px; 
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+  background-color: #0056b3;
+}
+

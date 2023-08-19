@@ -196,3 +196,23 @@
 .favorite-icon.active {
   color: gold; 
 }
+
+.recipe-title {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+  color: #fff; /* Set a light color that contrasts with the background image */
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+  position: relative;
+}
+
+.favorite-icon {
+  position: absolute;
+  top: 50%; /* Position the icon vertically centered */
+  right: -2rem; /* Adjust the spacing from the right */
+  transform: translateY(-50%); /* Center the icon vertically */
+  cursor: pointer;
+}
+
+.favorite-icon.active {
+  color: gold; /* Or your preferred color for the active state */
+}

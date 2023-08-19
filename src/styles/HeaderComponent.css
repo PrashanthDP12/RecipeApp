@@ -16,6 +16,7 @@
 
 .app-title:hover {
   transform: scale(1.05);
+  text-shadow: 3px 3px 6px rgba(0, 0, 0, 1.0);
 }
 
 .app-link {
@@ -35,4 +36,4 @@
 
 .app-link:active {
   background-color: #003c80;
-}
+} 

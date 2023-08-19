@@ -1,0 +1,15 @@
+/* RecipeApp.css */
+.app-container {
+    background-image: url('../public/images/background.jpg');
+    background-size: cover;
+    background-position: center;
+    min-height: 100vh;
+  }
+
+  .container-content {
+    background-color: rgba(129, 75, 75, 0); 
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(157, 137, 137, 0.1);
+  }
+  

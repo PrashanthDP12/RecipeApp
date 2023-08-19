@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { apiClient } from './api/apiClient';
+import Card from '../Components/UI/Card';
 
 function RecipeUpdate() {
   const { id } = useParams();
@@ -49,7 +50,7 @@ function RecipeUpdate() {
   };
 
   return (
-    <div>
+    <Card>
       <h2>Update Recipe</h2>
       <form onSubmit={handleSubmit}>
         <div className="mb-3">
@@ -119,7 +120,7 @@ function RecipeUpdate() {
           Update Recipe
         </button>
       </form>
-    </div>
+    </Card>
   );
 }
 

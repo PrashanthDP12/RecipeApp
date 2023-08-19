@@ -6,13 +6,18 @@ import ReviewTable from "./ReviewTable";
 import RecipeInfo from "./RecipeInfo";
 import { FaStar } from "react-icons/fa";
 import "../styles/RecipeDetails.css";
-import RecipeUpdate from "./RecipeUpdate";
+import Card from "../Components/UI/Card";
 
 function RecipeDetails() {
   const { id } = useParams();
   const [recipe, setRecipe] = useState(null);
   const [isFavorite, setIsFavorite] = useState(null);
   const navigate = useNavigate();
+  const [showAddReview, setShowAddReview] = useState(false); 
+
+  const handleAddReviewClick = () => {
+    setShowAddReview(true);
+  };
 
   useEffect(() => {
     fetchRecipe();
@@ -36,10 +41,10 @@ function RecipeDetails() {
 
   const addReview = async (review) => {
     try {
+      setShowAddReview(false);
       const response = await apiClient.post(`/${id}/reviews`, review);
       const addedReview = response.data;
 
-      // Update the recipe with the new review
       setRecipe((prevRecipe) => ({
         ...prevRecipe,
         reviews: [...prevRecipe.reviews, addedReview],
@@ -57,7 +62,6 @@ function RecipeDetails() {
       );
       const updated = response.data;
 
-      // Update the recipe with the updated review
       setRecipe((prevRecipe) => ({
         ...prevRecipe,
         reviews: prevRecipe.reviews.map((review) =>
@@ -72,8 +76,6 @@ function RecipeDetails() {
   const deleteReview = async (reviewId) => {
     try {
       await apiClient.delete(`/${id}/reviews/${reviewId}`);
-
-      // Remove the deleted review from the recipe's reviews
       setRecipe((prevRecipe) => ({
         ...prevRecipe,
         reviews: prevRecipe.reviews.filter(
@@ -122,13 +124,22 @@ function RecipeDetails() {
         <button type="button" onClick={handleUpdateClick}>
           Update Recipe
         </button>
+        <button type="button" onClick={handleAddReviewClick}>
+          Add Review
+        </button>
       </div>
-      <ReviewForm onAddReview={addReview} />
+      {showAddReview && ( 
+        <Card>
+          <ReviewForm onAddReview={addReview} />
+        </Card>
+      )}
+      <Card>
       <ReviewTable
         reviews={recipe.reviews}
         onUpdateReview={updateReview}
         onDeleteReview={deleteReview}
       />
+      </Card>
     </div>
   );
 }
