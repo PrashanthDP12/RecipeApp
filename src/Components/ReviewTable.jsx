@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState , useCallback } from "react";
 
 function ReviewTable({ reviews, onUpdateReview, onDeleteReview }) {
   const [updatedReview, setUpdatedReview] = useState({
@@ -9,29 +9,29 @@ function ReviewTable({ reviews, onUpdateReview, onDeleteReview }) {
 
   const [selectedReview, setSelectedReview] = useState(null);
 
-  const handleEditReview = (review) => {
+  const handleEditReview = useCallback((review) => {
     setSelectedReview(review);
     setUpdatedReview({
       comment: review.comment,
       rating: review.rating,
       reviewId: review.id,
     });
-  };
+  },[]);
 
-  const handleCancelUpdate = () => {
+  const handleCancelUpdate = useCallback(() => {
     setSelectedReview(null);
     setUpdatedReview({ comment: "", rating: "" });
-  };
+  },[]);
 
-  const handleInputChange = (event) => {
+  const handleInputChange = useCallback((event) => {
     const { name, value } = event.target;
     setUpdatedReview((prevState) => ({
       ...prevState,
       [name]: value,
     }));
-  };
+  },[]);
 
-  const updateReview = (reviewId) => {
+  const updateReview = useCallback((reviewId) => {
     const updatedReviewWithUserId = { ...updatedReview, reviewId };
 
     onUpdateReview(reviewId, updatedReviewWithUserId);
@@ -42,11 +42,11 @@ function ReviewTable({ reviews, onUpdateReview, onDeleteReview }) {
     });
 
     setSelectedReview(null);
-  };
+  },[onUpdateReview]);
 
-  const deleteReview = (reviewId) => {
+  const deleteReview = useCallback((reviewId) => {
     onDeleteReview(reviewId);
-  };
+  },[onDeleteReview]);
 
   return (
     <div className="review-table-container">
@@ -108,4 +108,4 @@ function ReviewTable({ reviews, onUpdateReview, onDeleteReview }) {
   );
 }
 
-export default ReviewTable;
+export default React.memo(ReviewTable);

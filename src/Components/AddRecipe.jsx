@@ -1,16 +1,63 @@
 import React, { useState } from 'react';
 import { apiClient } from './api/apiClient';
 import '../styles/AddRecipe.css';
+import useInput from '../hooks/use-input';
+
 function AddRecipe() {
-  const [title, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-  const [cookingTime, setCookingTime] = useState(0);
-  const [ingredients, setIngredients] = useState('');
-  const [method, setMethod] = useState('');
+  const {
+    value: title,
+    isValid: titleIsValid,
+    hasError: titleHasError,
+    valueChangeHandler: titleChangeHandler,
+    inputBlurHandler: titleBlurHandler,
+    reset: resetTitle
+  } = useInput(value => value.trim() !== '');
+
+  const {
+    value: description,
+    isValid: descriptionIsValid,
+    hasError: descriptionHasError,
+    valueChangeHandler: descriptionChangeHandler,
+    inputBlurHandler: descriptionBlurHandler,
+    reset: resetDescription
+  } = useInput(value => value.trim() !== '');
+
+  const {
+    value: cookingTime,
+    isValid: cookingTimeIsValid,
+    hasError: cookingTimeHasError,
+    valueChangeHandler: cookingTimeChangeHandler,
+    inputBlurHandler: cookingTimeBlurHandler,
+    reset: resetCookingTime
+  } = useInput(value => value.trim() !== '');
+  
+
+  const {
+    value: ingredients,
+    isValid: ingredientsIsValid,
+    hasError: ingredientsHasError,
+    valueChangeHandler: ingredientsChangeHandler,
+    inputBlurHandler: ingredientsBlurHandler,
+    reset: resetIngredients
+  } = useInput(value => value.trim() !== '');
+  
+  const {
+    value: method,
+    isValid: methodIsValid,
+    hasError: methodHasError,
+    valueChangeHandler: methodChangeHandler,
+    inputBlurHandler: methodBlurHandler,
+    reset: resetMethod
+  } = useInput(value => value.trim() !== '');
+
   const [successMessage, setSuccessMessage] = useState('');
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    if (!formIsValid) {
+      return;
+    }
 
     const newRecipe = {
       title,
@@ -25,90 +72,96 @@ function AddRecipe() {
       console.log('New recipe added:', response.data);
       setSuccessMessage('Recipe added successfully!');
       // Reset form fields
-      setTitle('');
-      setDescription('');
-      setCookingTime(0);
-      setIngredients('');
-      setMethod('');
+      resetTitle();
+      resetDescription();
+      resetCookingTime();
+      resetIngredients();
+      resetMethod();
+      // Reset other fields...
     } catch (error) {
       console.error('Error adding recipe:', error);
     }
   };
 
+  const formIsValid = titleIsValid && descriptionIsValid && cookingTimeIsValid && ingredientsIsValid && methodIsValid/* Other field validations... */;
+
   return (
-    <div className="add-recipe-container">
-      <h2 className="add-recipe-title">Add New Recipe</h2>
-      {successMessage && <p className="text-success">{successMessage}</p>}
-      <form onSubmit={handleSubmit}>
-        <div className="mb-3">
-          <label htmlFor="title" className="form-label">
-            Title:
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="title"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="description" className="form-label">
-            Description:
-          </label>
-          <input
-            type="text"
-            className="form-control"
-            id="description"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="cookingTime" className="form-label">
-            Cooking Time (minutes):
-          </label>
-          <input
-            type="number"
-            className="form-control"
-            id="cookingTime"
-            value={cookingTime}
-            onChange={(e) => setCookingTime(e.target.value)}
-            required
-          />
-        </div>
-        <div className="mb-3">
-          <label htmlFor="ingredients" className="form-label">
-            Ingredients:
-          </label>
-          <textarea
-            className="form-control"
-            id="ingredients"
-            value={ingredients}
-            onChange={(e) => setIngredients(e.target.value)}
-            required
-          ></textarea>
-        </div>
-        <div className="mb-3">
-          <label htmlFor="method" className="form-label">
-            Method:
-          </label>
-          <textarea
-            className="form-control"
-            id="method"
-            value={method}
-            onChange={(e) => setMethod(e.target.value)}
-            required
-          ></textarea>
-        </div>
-        <button type="submit" className="btn btn-primary add-recipe-button">
-          Add Recipe
-        </button>
-      </form>
+    <div className="fade-in-component">
+      <div className="add-recipe-container">
+        <h2 className="add-recipe-title">Add New Recipe</h2>
+        {successMessage && <p className="text-success">{successMessage}</p>}
+        <form onSubmit={handleSubmit}>
+          <div className={`mb-3 ${titleHasError ? 'invalid' : ''}`}>
+            <label htmlFor="title" className="form-label">Title :</label>
+            <input
+              type="text"
+              className={`form-control ${titleHasError ? 'invalid' : ''}`}
+              id="title"
+              value={title}
+              onChange={titleChangeHandler}
+              onBlur={titleBlurHandler}
+              required
+            />
+            {titleHasError && <p className="error-text">Please enter a valid title.</p>}
+          </div>
+          <div className={`mb-3 ${descriptionHasError ? 'invalid' : ''}`}>
+            <label htmlFor="description" className="form-label">Description :</label>
+            <input
+              type="text"
+              className={`form-control ${descriptionHasError ? 'invalid' : ''}`}
+              id="description"
+              value={description}
+              onChange={descriptionChangeHandler}
+              onBlur={descriptionBlurHandler}
+              required
+            />
+            {descriptionHasError && <p className="error-text">Please enter a valid description.</p>}
+          </div>
+          <div className={`mb-3 ${cookingTimeHasError ? 'invalid' : ''}`}>
+            <label htmlFor="cookingTime" className="form-label">Cooking Time :</label>
+            <input
+              type="text"
+              className={`form-control ${cookingTimeHasError ? 'invalid' : ''}`}
+              id="cookingTime"
+              value={cookingTime}
+              onChange={cookingTimeChangeHandler}
+              onBlur={cookingTimeBlurHandler}
+              required
+            />
+            {cookingTimeHasError && <p className="error-text">Please enter a valid cooking time.</p>}
+          </div>
+          <div className={`mb-3 ${ingredientsHasError ? 'invalid' : ''}`}>
+            <label htmlFor="ingredients" className="form-label">Ingredients :</label>
+            <input
+              type="text"
+              className={`form-control ${ingredientsHasError ? 'invalid' : ''}`}
+              id="cookingTime"
+              value={ingredients}
+              onChange={ingredientsChangeHandler}
+              onBlur={ingredientsBlurHandler}
+              required
+            />
+            {ingredientsHasError && <p className="error-text">Please enter a valid ingredients.</p>}
+          </div>
+          <div className={`mb-3 ${methodHasError ? 'invalid' : ''}`}>
+            <label htmlFor="ingredients" className="form-label">Method :</label>
+            <input
+              type="text"
+              className={`form-control ${methodHasError ? 'invalid' : ''}`}
+              id="cookingTime"
+              value={method}
+              onChange={methodChangeHandler}
+              onBlur={methodBlurHandler}
+              required
+            />
+            {methodHasError && <p className="error-text">Please enter a valid method.</p>}
+          </div>
+          <button type="submit" className="btn btn-primary add-recipe-button">Add Recipe</button>
+        </form>
+      </div>
     </div>
   );
 }
 
 export default AddRecipe;
+

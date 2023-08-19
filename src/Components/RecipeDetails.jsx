@@ -16,7 +16,7 @@ function RecipeDetails() {
   const [showAddReview, setShowAddReview] = useState(false); 
 
   const handleAddReviewClick = () => {
-    setShowAddReview(true);
+    setShowAddReview((prevState) => !prevState);
   };
 
   useEffect(() => {
@@ -125,7 +125,7 @@ function RecipeDetails() {
           Update Recipe
         </button>
         <button type="button" onClick={handleAddReviewClick}>
-          Add Review
+          {showAddReview ? "Hide Review":"Add Review"}
         </button>
       </div>
       {showAddReview && ( 

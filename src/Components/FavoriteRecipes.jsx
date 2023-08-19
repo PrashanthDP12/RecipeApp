@@ -20,6 +20,7 @@ function FavoriteRecipes() {
   };
 
   return (
+    <div className="fade-in-component">
     <div className="favorite-recipes-container">
       <h2 className="favorite-recipes-title">Favorite Recipes</h2>
       <div className="card-columns">
@@ -35,6 +36,7 @@ function FavoriteRecipes() {
           </div>
         ))}
       </div>
+    </div>
     </div>
   );
 }

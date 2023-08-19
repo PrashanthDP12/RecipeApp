@@ -28,6 +28,7 @@ function DisplayRecipes() {
 
   return (
     <div className="display-recipes-container">
+      <div className="fade-in-component">
       <h2 className="text-center mb-4">All Recipes</h2>
       {loading ? ( 
         <div className="loading-message">Loading...</div>
@@ -53,6 +54,7 @@ function DisplayRecipes() {
           })}
         </div>
       )}
+      </div>
     </div>
   );
 }

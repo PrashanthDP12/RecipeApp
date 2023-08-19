@@ -9,10 +9,13 @@ import AddRecipe from "./Components/AddRecipe";
 import HeaderComponent from "./Components/HeaderComponent";
 import RecipeUpdate from "./Components/RecipeUpdate";
 import './RecipeApp.css';
+import './styles/global-styles.css';
 
 function RecipeApp() {
   return (
+    
     <div className="app-container">
+      <div className="fade-in-component">
       <HeaderComponent /> 
       <div className="container-content">
         <Routes>
@@ -25,7 +28,9 @@ function RecipeApp() {
           <Route path="/update-recipe/:id" element={<RecipeUpdate />} />
         </Routes>
       </div>
-    </div>
+      </div>
+      </div>
+      
   );
 }
 

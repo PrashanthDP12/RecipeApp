@@ -14,7 +14,7 @@ function RecipeUpdate() {
 
   useEffect(() => {
     fetchRecipe();
-  }, []);
+  }, [fetchRecipe]);
 
   const fetchRecipe = async () => {
     try {
